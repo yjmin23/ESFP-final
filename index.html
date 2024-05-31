@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RECOMMENDATIONS BY MBTI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
+    <style>
+        .search {
+            display: flex;
+            align-items: center;
+        }
+        .search input {
+            width: 148px;
+            height: 24px;
+            font-size: 14px;
+            border: none;
+            border-bottom: 1px black solid;
+            margin-right: 10px;
+        }
+    
+        .search button {
+            font-size: 35px;
+            border: none;
+            background-color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            color: black;
+            cursor: pointer;
+        }
+        
+        * {
+            margin: 0; padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            width: 100%;
+            position: relative;
+        }
+    
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: lighter;
+            text-align: center;
+            margin: 0;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    
+        .header-menu {
+            overflow: visible;
+            width: 1080px;
+            margin: 0 auto;
+            margin-bottom: 8px;  
+            display: flex;
+            justify-content: center;
+            text-align: center; 
+    
+        }
+        
+        .outer-menu {
+            padding: 8px 0px;
+            display: inline-block;
+            margin-left: 125px;
+            margin-right: 125px;
+            margin-bottom: -1px;
+            text-align: center;
+            position: relative;
+            font-size: 18px;
+            z-index: 9999;
+            list-style-type: none;
+        }
+    
+        .outer-menu > a {
+            list-style-type: none;
+            margin-left: 10px;
+            line-height: 10px;
+            display: inline-block;
+            padding: 10px;
+        }
+    
+        .outer-menu > a:first-child {
+            padding-left: 10px;
+            padding-right: 10px;
+            margin-left: 40px;
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+        }
+        .outer-menu li > a {
+            padding-left: 30px;
+            padding-right: 30px;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+      
+    
+        .outer-menu:hover a {
+            color: black; 
+        }
+    
+        .outer-menu:active a {
+            color: black;
+        }
+    
+        .inner-menu {
+            display: none;
+            background: #FFFFFF;
+            margin-top: 14px;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: max-content;
+            border-top: 1px solid #cccaca;
+            box-shadow: 0 2px 4px rgba(34, 25, 25, 0.5);
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+    
+        .inner-menu a {
+            display: block;
+            padding: 7px 15px;
+            z-index: 5000;
+            list-style-type: none;
+            line-height: 10px;
+            text-align: center; 
+            color: black;
+        }
+    
+        .inner-menu a:hover {
+            background-color: black;
+            color: white; 
+        }
+    
+        a {
+            text-decoration: none;
+            color: black;
+        }
+    
+        div.section {
+            border: 1px solid black;
+            margin: 3px;
+            padding: 10px;
+        }
+    
+        a {
+            text-decoration: none;
+            color: darkgray;
+        }
+    
+        .header img {
+            margin-top: 4px;
+        }
+    
+        hr {
+            margin: 0;
+            padding: 0;
+        }
+    
+        .esfp-write {
+            display: flex;
+            align-items: flex-start;
+            padding-left: 100px;
+            padding-bottom: -50px;
+    
+        }
+        .esfp-img {
+            padding-left: 200px;
+            display: inline-block;
+    
+        }
+        .esfp-img p {
+            font-size: 25px;
+            margin: 0;
+            line-height: 1.5;
+        }
+        .esfp-img p > b {
+            font-size: 40px;
+        }
+        .esfp-q {
+            padding-left: 180px;
+            padding-top: 20px;
+            padding-bottom: 50px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            max-width: 600px;
+        }
+        .esfp-q p:first-child {
+            color: darkblue;
+            font-weight: 700;
+        }
+        .esfp-q p > b {
+            font-size: 20px;
+        }
+    
+        .esfp-q {
+            width: 950px; height: 400px;
+            border: none;
+            position: relative;
+            overflow-y: scroll;
+            scrollbar-width: none;
+    
+        }
+        @media screen and (max-width: 767px) {
+            .header {
+                flex-direction: column;
+                padding: 80px;
+            }
+            .header h1 {
+                    margin-top: 80px;
+            }
+            .header-menu {
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+            }
+            .outer-menu {
+                margin: 10px 0;
+                flex-direction: row;
+            }
+            .esfp-write {
+                flex-direction: column;
+                align-items: center;
+                padding-left: 0;
+            }
+            .esfp-img {
+                padding-left: 0;
+                text-align: center;
+            }
+            .esfp-q {
+                padding-left: 20px;
+                width: 100%;
+                max-width: 90%;
+            }
+            .search {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            right: 70px;
+            top: 20px;
+            }
+            .search input {
+            width: 148px;
+            height: 24px;
+            font-size: 14px;
+            border: none;
+            border-bottom: 1px black solid;
+            margin: 0 auto;
+            display: block;
+            }
+    
+            .search button {
+            font-size: 35px;
+            border: none;
+            float: right;
+            background-color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            color: black;
+            cursor: pointer;
+            float: right;
+    
+            }
+            body { position: relative;}
+            .header img { 
+                    position: absolute;
+                    top: 30px;
+                    right: 20px;
+    
+                    
+            }
+            .inner-menu {
+                    position: absolute;
+                    left: 100%;
+                    transform: translateY(0);
+                    top: -10px;
+            }
+            
+        }
+    
+        @media screen and (min-width: 768px) and (max-width: 959px) {
+            .header {
+                flex-direction: column;
+                padding: 80px;
+            }
+            .header h1 {
+                    margin-top: 80px;
+            }
+            .header-menu {
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+            }
+            .outer-menu {
+                margin: 10px 0;
+            }
+            .esfp-write {
+                flex-direction: column;
+                align-items: center;
+                padding-left: 0;
+            }
+            .esfp-img {
+                padding-left: 0;
+                text-align: center;
+            }
+            .esfp-q {
+                padding-left: 20px;
+                width: 100%;
+                max-width: 80%;
+            }
+            .search {
+            display: flex;
+            align-items: center;
+            position: absolute;
+            right: 70px;
+            top: 20px;
+            }
+            .search input {
+            width: 148px;
+            height: 24px;
+            font-size: 14px;
+            border: none;
+            border-bottom: 1px black solid;
+            margin: 0 auto;
+            display: block;
+            float: right;
+            }
+    
+            .search button {
+            font-size: 35px;
+            border: none;
+            background-color: white;
+            padding: 6px 12px;
+            border-radius: 15px;
+            color: black;
+            cursor: pointer;
+            float: right;
+    
+            }
+            body { position: relative;}
+            .header img { 
+                    position: absolute;
+                    right: 20px;
+                    top: 30px;
+    
+                    
+            }
+            .inner-menu {
+                    position: absolute;
+                    left: 100%;
+                    transform: translateY(0);
+                    top: -10px
+            }
+            
+        }
+    
+       
+    </style>
+<script>
+        $(document).ready(function () {
+            $('.outer-menu').hover(function () {
+                $(this).find('.inner-menu').css('display', 'block');
+            }, function () {
+                $(this).find('.inner-menu').css('display', 'none');
+            });
+        });
+</script>
+</head>
+
+
+<body>
+    <div class="header">
+        <h1>RECOMMENDATIONS BY <b>MBTI</b> TYPE</h1>
+        <form action="https://search.naver.com/search.naver" style="margin-left: auto;">
+            <div class="search">
+                <input type="text" name="query" value="">
+                <button type="submit">⌕</button>
+            </div>
+        </form>
+        &nbsp;&nbsp;&nbsp;
+        <a href="https://wulwu.github.io/qnaafter/">
+            <img src="https://cdn-icons-png.flaticon.com/512/2608/2608207.png" alt="Q&A" width="30">
+        </a>
+        &nbsp;&nbsp;
+    </div>
+
+    <br>
+    <hr>
+
+    <div class="header-menu">
+        <ul class="outer-menu">
+            <li>
+                <a href="#">ES</a>
+                <ul class="inner-menu">
+                    <li><a href="https://wulwu.github.io/estp/">ESTP</a></li>
+                    <li><a href="https://wulwu.github.io/estj/">ESTJ</a></li>
+                    <li><a href="https://wulwu.github.io/esfp/">ESFP</a></li>
+                    <li><a href="https://wulwu.github.io/esfj/">ESFJ</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="outer-menu">
+            <li>
+                <a href="#">EN</a>
+                <ul class="inner-menu">
+                    <li><a href="https://wulwu.github.io/entp/">ENTP</a></li>
+                    <li><a href="https://wulwu.github.io/entj/">ENTJ</a></li>
+                    <li><a href="https://wulwu.github.io/enfp_last/">ENFP</a></li>
+                    <li><a href="https://wulwu.github.io/enfj/">ENFJ</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="outer-menu">
+            <li>
+                <a href="#">IS</a>
+                <ul class="inner-menu">
+                    <li><a href="https://wulwu.github.io/istp/">ISTP</a></li>
+                    <li><a href="https://wulwu.github.io/istj/">ISTJ</a></li>
+                    <li><a href="https://wulwu.github.io/isfp/">ISFP</a></li>
+                    <li><a href="https://wulwu.github.io/isfj/">ISFJ</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="outer-menu">
+            <li>
+                <a href="#">IN</a>
+                <ul class="inner-menu">
+                    <li><a href="https://wulwu.github.io/intp/">INTP</a></li>
+                    <li><a href="https://wulwu.github.io/intj/">INTJ</a></li>
+                    <li><a href="https://wulwu.github.io/infp/">INFP</a></li>
+                    <li><a href="https://wulwu.github.io/infj/">INFJ</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <hr>
+    <br>
+    <br>
+    <br>
+    <div class="esfp-write">
+        <div class="esfp-img">  
+            <p><b>연예인</b></p>
+            <p>성격유형: ESFP</p><br><br>
+            <img src="https://i.pinimg.com/originals/b0/8c/ea/b08ceaba12a803204caa60947552cc13.png" width="250">
+        </div>
+        <div class="esfp-q">
+            <p>즉흥적이고 넘치는 에너지와 열정으로 주변 사람을 즐겁게 하는 연예인</p>
+            <br><br>
+            <p><b>ESFP 특징</b></p><br>
+            <p>- 남을 응원하는 데 기꺼이 시간과 에너지를 투자한다.</p>
+            <p>- 다른 이들의 기운을 북돋아 준다.</p>
+            <p>- 사소한 일도 즐거워하며 친구들과 재미있는 시간을 보내는 일에서 큰 만족감을 느낀다.</p>
+            <p>- 주변인의 단점보단 장점을 바라본다.</p>
+            <p>- 장기적인 목표를 수립하기보다는 새로운 기회를 발견하는 데 집중하느라 주의가 산만해질 때가 있다.</p>
+            <p>- 미적 감각과 패션 감각이 매우 뛰어난 성격이다.</p>
+            <p>- 관찰력이 뛰어나며 빠르게 다른 사람의 감정을 알아차린다.</p><br><br>
+            <br><br>
+        </div>
+    </div>
+
+  
+</body>
+</html>
